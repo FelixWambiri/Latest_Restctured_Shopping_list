@@ -1,0 +1,30 @@
+<head>
+    <meta charset="utf-8"/>
+    <title>Shopping List App Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='signup.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form class="card" method="post">
+        <div class="header">
+            <h3>Login</h3>
+        </div>
+
+        <div class="loginform">
+            <div class="login"><label for="user_name">User name:</label><br/>
+                <input type="text" name="user_name" id="user_name" placeholder="User name" required="autofocus"/>
+            </div>
+
+            <div class="login"><label for="password">Password:</label><br/>
+                <input type="password" name="password" id="password" placeholder="password" required="autofocus"/>
+            </div>
+
+            <label for="remember_me" class="remember_me">Remember me?:</label>
+            <input type="checkbox" name="remember_me" id="remember_me"/><br/>
+            <input class="button" type="submit" value="Login"/>
+            <p style="padding-bottom:20px;"> <a href="{{ url_for('register') }}">Not signed up?</a></p>
+        </div>
+    </form>
+</div>
+</body>
