@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/FelixWambiri/Latest_Restctured_Shopping_list.svg?branch=App)](https://travis-ci.org/FelixWambiri/Latest_Restctured_Shopping_list)
-# shopping-list-app
-A shopping list app developed using python to help a person share and keep track of  the purchased items or items they intend to purchase
-When a person wants to use the application they just login and if they do not have an account they Register first.
-After logging in or successfully signing up that person is redirection to a Login_page from where they can start making their shopping lists 
+<h2>**Shopping items tracking and sharing application**<h2>
+This application is designed to help users manage and keep track of items the have either purchased or are planning to purchase.
+In doing so they are able to share their shopping lists with the friends and family.This application will enable a user to create a new shopping list,update it,view delete
+the shopping list.They will also be able to add, delete, update and view individual items as well.
+<h3>**Installation**<h3>
