@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 from Develop.ClassModels.user import User
 from Develop.ClassModels.user_accounts import UsersAccountList
+from Develop.templates.formClass import RegistrationForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'wabdblabla'
 account = UsersAccountList()
 
 
@@ -21,19 +23,16 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        firstname = request.form['first_name']
-        lastname = request.form['last_name']
-        email = request.form['email']
-        password = request.form['password']
-        confirm_password = request.form['password']
-        username = request.form['user_name']
-        myuser = User(username, email, password)
-        account.create_users(myuser)
-
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(form.username.data, form.email.data, form.password.data)
+        print(form.errors)
+        account.create_users(user)
+        flash('You have registered successfully')
         return redirect(url_for('dashboard'))
-        """" Hi " + account.view_users(username).username + " Welcome to \My Shoppinglist App"""
-    return render_template('register.html')
+
+    print(form.errors)
+    return render_template('register.html', form=form)
 
 
 @app.route('/dashboard', methods=['Get', 'POST'])
