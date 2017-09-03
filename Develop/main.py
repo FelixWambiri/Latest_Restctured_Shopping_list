@@ -11,6 +11,7 @@ app.config['SECRET_KEY'] = "wabdabwahh"
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 account = UsersAccountList()
 
 
