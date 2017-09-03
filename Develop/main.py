@@ -27,6 +27,7 @@ def login():
                 return redirect(url_for('dashboard'))
     else:
         error = 'Invalid credentials'
+
     return render_template('login.html', form=form)
 
 
