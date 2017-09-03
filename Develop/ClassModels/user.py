@@ -1,9 +1,13 @@
-class User(object):
+from flask_login import UserMixin
+
+
+class User(UserMixin):
     """This class is the model of how the user object will be created with attributes and methods of the user"""
     """The init method below initialises the key attributes"""
 
     def __init__(self, username, email, password):
         self.username = username
+        self.id = username
         self.email = email
         self.password = password
         self.shopping_lists = {}
