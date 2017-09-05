@@ -1,8 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_login import login_user, LoginManager, login_required, logout_user, current_user
 
 from Develop.ClassModels.LoginFormClass import LoginFormManager
 from Develop.ClassModels.RegistrationFormClass import RegistrationForm
+from Develop.ClassModels.my_shopping_list import ShoppingList
+from Develop.ClassModels.shoppingListCreationForm import CreateShoppingList
 from Develop.ClassModels.user import User
 from Develop.ClassModels.user_accounts import UsersAccountList
 
@@ -60,6 +62,13 @@ def logout():
         return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/createShoppingList', methods=['GET', 'POST'])
+def createshoppingList():
+    form = CreateShoppingList()
+    if form.validate_on_submit():
+        current_user.create_shopping_list(ShoppingList(form.name.data, form.description.data))
 
 
 if __name__ == '__main__':
