@@ -25,9 +25,12 @@ def login():
         if account.view_users(form.username.data):
             if form.password.data == account.view_users(form.username.data).password:
                 login_user(account.view_users(form.username.data))
+                print("WTF")
                 flash("You have logged in sucessfully, welcome")
                 return redirect(url_for('dashboard'))
+            print("Invalid credentials 1")
     else:
+        print("Invalid credentials")
         error = 'Invalid credentials'
 
     return render_template('login.html', form=form)
@@ -64,12 +67,28 @@ def logout():
         return redirect(url_for('login'))
 
 
+@app.route("/shopping_list_view", methods=['GET', 'POST'])
+def shopping_list_view():
+    print()
+    return render_template("shopping_list_view.html", shoppinglist=ShoppingList("Back to school", "fSchool"))
+
+
 @app.route('/createShoppingList', methods=['GET', 'POST'])
 def createshoppingList():
     form = CreateShoppingList()
+    print(len(current_user.shopping_lists))
     if form.validate_on_submit():
         current_user.create_shopping_list(ShoppingList(form.name.data, form.description.data))
+        print(len(current_user.shopping_lists))
+        return redirect(url_for('dashboard'))
+    return render_template("dashboard.html")
 
+
+"""@app.route('/deleteShoppingList')
+def deleteshoppinglist():
+    current_user.delete_shopping_list(purchased_items())
+    
+    return render_template("delete_item_view.html")"""
 
 if __name__ == '__main__':
     app.run(debug=True)
