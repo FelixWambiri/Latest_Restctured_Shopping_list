@@ -84,11 +84,13 @@ def createshoppingList():
     return render_template("dashboard.html")
 
 
-"""@app.route('/deleteShoppingList')
-def deleteshoppinglist():
-    current_user.delete_shopping_list(purchased_items())
-    
-    return render_template("delete_item_view.html")"""
+@app.route('/deleteShoppingList')
+def deleteshoppinglist(purchased_items=None):
+    form = CreateShoppingList()
+    current_user.delete_shopping_list(purchased_items.pop(ShoppingList(form.name.data)))
+
+    return render_template("delete_item_view.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
