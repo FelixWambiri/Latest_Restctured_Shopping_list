@@ -15,7 +15,7 @@
 	   </ul>
    </div>
    <div class="container">
-   <form class="loginform">
+   <form class="loginform" method="post" action="{{url_for('shopping_list_view')}}">
    <div>
         <label for="name"> Names:</label><br/>
 		<input type="text" name="full_names" id="name" placeholder="name"required="autofocus" style="width:100%;"/>
@@ -24,9 +24,12 @@
 	    <label for="description"> Description:</label><br/>
 		<textarea rows="4" cols="40" autofocus="autofocus" name="description" id="description">
 		</textarea></br>
-		<input class="button" type="submit" value="create" />
+		<a href="{{ url_for('createshoppingList') }}"><input class="button" type="submit" value="create"  /></a>
 	</div></div>
 	</form>
+       {%for list in shopping_lists %}
+            {{ list }}
+       {% endfor %}
 	</div>
 	</div>
    </body>
