@@ -24,7 +24,7 @@
 	    <label for="description"> Description:</label><br/>
 		<textarea rows="4" cols="40" autofocus="autofocus" name="description" id="description">
 		</textarea></br>
-		<a href="{{ url_for('createshoppingList') }}"><input class="button" type="submit" value="create"  /></a>
+		<a href=" {{ url_for('createshoppingList') }}"><input class="button" type="submit" value="create"  /></a>
 	</div></div>
 	</form>
        {%for list in shopping_lists %}
