@@ -4,6 +4,7 @@ class UsersAccountList:
     def __init__(self):
         self.users_list = {}
 
+
     def create_users(self, user):
         """This method adds individual users to the overall user accounts list"""
         if user.username in self.users_list:
