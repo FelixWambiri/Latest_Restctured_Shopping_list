@@ -16,8 +16,5 @@ class ShoppingList:
 
     def update_list_item(self, item_name, item):
         """This method updates items on the shopping list"""
-        """self.purchased_items[item_name] = self.purchased_items[new_item_name]"""
-        """del self.purchased_items[item_name]"""
-        """self.purchased_items[item_name] = new_items"""
         self.purchased_items.pop(item_name)
         self.purchased_items.update({item_name.name: item})
