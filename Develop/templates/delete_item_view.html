@@ -1,0 +1,26 @@
+<head>
+    <meta charset="utf-8"/>
+    <title>Shopping List App Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='item.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <form class="card">
+        <div class="header">
+            <h3>Delete Items</h3>
+        </div>
+
+        <div class="OverallItemForm">
+              <div class="Add_item">
+                <label> item name:</label><br/>
+                {{ form.name }}
+            </div>
+                <input class="button" type="submit" value="Delete"/>
+                <input class="button" type="submit" value="cancel"/>
+
+            </div>
+        </div>
+    </form>
+</div>
+</body>
