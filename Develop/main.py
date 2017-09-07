@@ -3,6 +3,9 @@ from flask_login import login_user, LoginManager, login_required, logout_user, c
 
 from Develop.ClassModels.LoginFormClass import LoginFormManager
 from Develop.ClassModels.RegistrationFormClass import RegistrationForm
+from Develop.ClassModels.additemform import AddItemsManager
+from Develop.ClassModels.deleteitemform import DeleteItemsManager
+from Develop.ClassModels.items import Item
 from Develop.ClassModels.my_shopping_list import ShoppingList
 from Develop.ClassModels.shoppingListCreationForm import CreateShoppingList
 from Develop.ClassModels.user import User
@@ -37,8 +40,8 @@ def login():
 
 
 @login_manager.user_loader
-def load_user(usename):
-    return account.view_users(usename)
+def load_user(username):
+    return account.view_users(username)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -84,12 +87,43 @@ def createshoppingList():
     return render_template("dashboard.html")
 
 
-@app.route('/deleteShoppingList')
-def deleteshoppinglist(purchased_items=None):
-    form = CreateShoppingList()
-    current_user.delete_shopping_list(purchased_items.pop(ShoppingList(form.name.data)))
+@app.route('/deleteShoppingList', methods=['GET', 'POST'])
+def deleteshoppinglist():
+    form = DeleteItemsManager()
+    current_user.delete_shopping_list(form.name.data)
 
-    return render_template("delete_item_view.html")
+    return render_template("delete_item_view.html", form=form)
+
+
+@app.route("/add_item/<shopping_list_name>", methods=['GET', 'POST'])
+def add_item(shopping_list_name):
+    form = AddItemsManager()
+    if form.validate_on_submit():
+
+        item = Item(form.item_name.data, form.item_price.data,
+                    form.item_quantity.data)
+
+        shopping_list = current_user.view_shopping_list(shopping_list_name)
+        shopping_list.add_item(item)
+        current_user.update_shopping_list(shopping_list)
+        flash(" " + item.name +
+              " was added into Shopping List " +
+              shopping_list_name)
+
+        return redirect(url_for('dashboard'))
+
+    else:
+        return render_template("add_item.html", form=form,
+                               shopping_list_name=shopping_list_name)
+
+
+@app.route("/delete_item/<shopping_list_name>/<name>", methods=['GET', 'POST'])
+def delete_item(shopping_list_name, name):
+    if current_user.is_authenticated:
+        current_user.get_shopping_list(shopping_list_name).remove_item(name)
+        flash(name + " Deleted Successfully ", "success")
+
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
