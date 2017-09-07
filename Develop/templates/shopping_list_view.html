@@ -15,7 +15,9 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">List of items</h4>
-
+                    {% for item in shoppinglist.categories %}
+                    <li>{{ item.name+" "+ item.price+" "+item.quantity+" " }}</li>
+                    {% endfor %}
                 </div>
             </div>
         </ul>
