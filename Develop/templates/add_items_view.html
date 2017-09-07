@@ -1,26 +1,30 @@
 <head>
     <meta charset="utf-8"/>
     <title>Shopping List App Login</title>
-    <link rel="stylesheet" href={{url_for('static', filename='items.css')}}>
+    <link rel="stylesheet" href={{url_for('static', filename='items.css' )}}>
 </head>
 <body>
 <div class="container">
-    <form class="card">
+    <form class="card" method="POST">
+        {{ form.csrf_token }}
         <div class="header">
             <h3>Add Items</h3>
         </div>
 
         <div class="OverallItemForm">
-            <div class="Add_item"><label for="item_name">Item name:</label><br/>
-                <input type="text" name="item_name" id="item_name" placeholder="Item name" required="autofocus"/>
+            <div class="Add_item">
+                <label> item name:</label><br/>
+                {{ form.name }}
             </div>
 
-            <div class="Add_item"><label for="item_price">Item Price:</label><br/>
-                <input type="number" name="item_price" id="item_price" placeholder="Item Price" required="autofocus"/>
+            <div class="Add_item">
+                <label> item price:</label><br/>
+                {{ form.price }}
             </div>
 
-            <div class="Add_item"><label for="quantity">Quantity:</label><br/>
-                <input type="number" name="quantity" id="quantity" placeholder="quantity" required="autofocus"/>
+            <div class="Add_item">
+                <label> item price:</label><br/>
+                {{ form.quantity }}
             </div>
 
             <input class="button" type="submit" value="Add Item"/>
