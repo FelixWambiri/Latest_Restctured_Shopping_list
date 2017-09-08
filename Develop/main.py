@@ -22,19 +22,15 @@ account = UsersAccountList()
 @app.route('/', methods=['Get', 'POST'])
 def login():
     form = LoginFormManager()
-    error = None
     if form.validate_on_submit():
 
         if account.view_users(form.username.data):
             if form.password.data == account.view_users(form.username.data).password:
                 login_user(account.view_users(form.username.data))
-                print("WTF")
                 flash("You have logged in sucessfully, welcome")
                 return redirect(url_for('dashboard'))
-            print("Invalid credentials 1")
-    else:
-        print("Invalid credentials")
-        error = 'Invalid credentials'
+            flash("Invalid credentials 1")
+        print(form.errors)
 
     return render_template('login.html', form=form)
 
@@ -49,8 +45,10 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(form.username.data, form.email.data, form.password.data)
-        account.create_users(user)
-        flash('You have registered successfully')
+        try:
+            account.create_users(user)
+        except KeyError:
+            flash("User name is already taken")
         return redirect(url_for('dashboard'))
 
     return render_template('register.html', form=form)
@@ -79,12 +77,11 @@ def shopping_list_view():
 @app.route('/createShoppingList', methods=['GET', 'POST'])
 def createshoppingList():
     form = CreateShoppingList()
-    print(len(current_user.shopping_lists))
     if form.validate_on_submit():
         current_user.create_shopping_list(ShoppingList(form.name.data, form.description.data))
         print(len(current_user.shopping_lists))
-        return redirect(url_for('dashboard'))
-    return render_template("dashboard.html")
+        return render_template("create_shopping_list.html")
+    return render_template("create_shopping_list.html")
 
 
 @app.route('/deleteShoppingList', methods=['GET', 'POST'])
@@ -125,6 +122,15 @@ def delete_item(shopping_list_name, name):
 
         return redirect(url_for('index'))
 
+
+"""@app.route('/createItems', methods=['GET', 'POST'])
+def CreateListofItems():
+    form = CreateListofItems()
+    if form.validate_on_submit():
+        current_user.create_shopping_list(ShoppingList(form.name.data, form.description.data))
+        print(len(current_user.shopping_lists))
+        return redirect(url_for('dashboard'))
+    return render_template("dashboard.html")"""
 
 if __name__ == '__main__':
     app.run(debug=True)
