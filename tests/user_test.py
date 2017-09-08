@@ -22,5 +22,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual(0, len(self.user.shopping_lists))
 
 
+
+
+
 if __name__ == '__main__':
     unittest.main()
