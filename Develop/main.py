@@ -49,7 +49,7 @@ def register():
             account.create_users(user)
         except KeyError:
             flash("User name is already taken")
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
 
