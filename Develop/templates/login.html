@@ -1,0 +1,50 @@
+<html>
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="utf-8"/>
+    <title>Shopping List App Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='signup.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+{% if error %}
+<p><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <div class="container">
+        <form class="card" method="post">
+            {{ form.csrf_token }}
+
+            <div class="header">
+                <h3>Login</h3>
+            </div>
+
+            <div class="loginform">
+                <div class="login">
+                    <label>User name:</label><br/>
+                    {{ form.username }}
+                    {{ form.username.error }}
+                </div>
+                <ul>
+
+                    {% for error in form.errors %}
+                    <li style="color:red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="login">
+                    <label>Password:</label><br/>
+                    {{ form.password }}
+                    {% for error in form.errors %}
+                    <li style="color:red;">{{ error }}</li>
+                    {% endfor %}
+                </div>
+
+                <label for="remember_me" class="remember_me">Remember me?:</label>
+                <input type="checkbox" name="remember_me" id="remember_me"/><br/>
+                <input class="button" type="submit" value="Login"/>
+<p style="padding-bottom:20px;"><a href="{{ url_for('register') }}">Not signed up?</a></p>
+</div>
+</form>
+</div>
+</body>
+{% endblock %}

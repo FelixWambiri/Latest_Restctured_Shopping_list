@@ -1,0 +1,56 @@
+<head>
+    <meta charset="utf-8"/>
+    <title>Shopping List Signup</title>
+    <link rel="stylesheet"  href="{{url_for('static', filename='signup.css')}}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form class="card" method="POST" >
+        {{ form.csrf_token }}
+
+        <div class="header">
+            <h3>Sign</h3>
+        </div>
+        <div class="form-group">
+            <div class="login">
+                <label> First name:</label><br/>
+                {{ form.username }}
+            </div>
+            <div class="login">
+                <label> Last name:</label><br/>
+                {{ form.lastname }}
+            </div>
+
+            <div class="login">
+                <label>Email:</label><br/>
+              {{ form.email }}
+            </div>
+
+            <div class="login">
+                <label>User name:</label><br/>
+              {{ form.username }}
+            </div>
+
+            <div class="login">
+                <label>Password:</label><br/>
+                 {{ form.password }}
+            </div>
+
+            <div class="login">
+                <label>Confirm password:</label><br/>
+                {{ form.confirm }}
+            </div>
+
+            <label for="terms" class="terms">I agree to the terms:</label>
+            <input type="checkbox" name="terms" id="terms"/><br/>
+            <input class="button" type="submit" value="register"/>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

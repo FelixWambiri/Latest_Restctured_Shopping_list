@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <meta charset="utf-8"/>
+     <title>Shopping List App Login</title>
+	 <link rel="stylesheet" href={{url_for('static', filename='dashboard.css')}}>
+   </head>
+   <body>
+   <div class="bodysection">
+   <div>
+        <ul>
+		    <li><a class="navtopbar" href="/logout"><input class="button1" type="submit" value="logout"/></a></li>
+			<li><a  class="navtopbar" href=""><input class="button1" type="submit" value="home"/></a></li>
+
+	   </ul>
+   </div>
+   <div class="container">
+   <form class="loginform" method="post" action="{{url_for('shopping_list_view')}}">
+   <div>
+        <label for="name"> Names:</label><br/>
+		<input type="text" name="full_names" id="name" placeholder="name"required="autofocus" style="width:100%;"/>
+
+	<div>
+	    <label for="description"> Description:</label><br/>
+		<textarea rows="4" cols="40" autofocus="autofocus" name="description" id="description">
+		</textarea></br>
+		<a href=" {{ url_for('createshoppingList') }}"><input class="button" type="submit" value="create"  /></a>
+	</div></div>
+	</form>
+       {%for list in shopping_lists %}
+            {{ list }}
+       {% endfor %}
+	</div>
+	</div>
+   </body>
+</html>

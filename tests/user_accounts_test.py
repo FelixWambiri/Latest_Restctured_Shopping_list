@@ -1,0 +1,36 @@
+import unittest
+
+from Develop.ClassModels.user import User
+from Develop.ClassModels.user_accounts import UsersAccountList
+
+
+class TestUserAccounts(unittest.TestCase):
+    def test_if_tried_to_delete_account_that_does_not_exist_returns_error(self):
+        usersaccountlist = UsersAccountList()
+        with self.assertRaises(KeyError):
+            usersaccountlist.delete_users("felix")
+
+    def test_if_user_name_is_already_taken_person_should_use_another_user_name(self):
+        usersaccountlist = UsersAccountList()
+        user1 = User("felix", "felixwambiri@gmail.com", "feloh")
+        usersaccountlist.create_users(user1)
+        with self.assertRaises(KeyError):
+            user2 = User("felix", "felixwambiri@gmail.com", "feloh")
+            usersaccountlist.create_users(user2)
+
+    def test_if_you_can_view_user(self):
+        user2 = User("felix", "felixwambiri@gmail.com", "feloh")
+        account = UsersAccountList()
+        account.create_users(user2)
+        self.assertEqual("felixwambiri@gmail.com", account.view_users("felix").email)
+
+    def test_if_useer_can_be_deleted(self):
+        user2 = User("felix", "felixwambiri@gmail.com", "feloh")
+        account = UsersAccountList()
+        account.create_users(user2)
+        account.delete_users(user2.username)
+        self.assertEqual(0, len(account.users_list))
+
+
+if __name__ == '__main__':
+    unittest.main()

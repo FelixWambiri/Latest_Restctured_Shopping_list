@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Items</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-body">
+                <div class="headings">Items Properties</div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Itemname" name="Itemname[]" value="" placeholder="Item Name">
+                    </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="Price" name="Price[]" value="" placeholder="Price">
+                    </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="Quantity" name="Quantity[]" value="" placeholder="Quantity">
+                    </div>
+                </div>
+               <div class="input-group-btn">
+        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+      </div>
+                </div>
+    </div>
+
+</body>
+</html>
